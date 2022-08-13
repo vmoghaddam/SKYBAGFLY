@@ -1,0 +1,178 @@
+﻿<style>
+</style>
+
+<div ng-controller="FatigueReportController">
+    <div id="popup_add" dx-popup="popup_add" class="no-padding">
+        <div style="padding:5px;">
+            <div id="scroll_FatigueReport" dx-scroll-view="scroll_FatigueReport" style="margin-top:5px;padding:0 5px 0 5px">
+                <table style="margin-top:10px;border:0px solid #eee;width:100%;color:lightgray" class="dx-border">
+                    <tr>
+                        <td colspan="6" style="background-color:lightgray;padding:7px;text-align:left;color:black;font-weight:bold">
+                            Reporting Information
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid gray">
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Reporter Name </td>
+                        <td style="padding:7px;text-align:left;"><div dx-text-box="txt_reporterName" class="center"></div></td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Rank </td>
+                        <td style="padding:7px;text-align:left;"><div dx-text-box="txt_rank" class="center"></div></td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Position In Flight </td>
+                        <td style="padding:7px;text-align:left;"><div dx-text-box="txt_posInFlight" class="center"></div></td>
+                    </tr>
+                </table>
+                <table style="margin-top:10px;border:0px solid #eee;width:100%;color:lightgray" class="dx-border">
+                    <tr>
+                        <td colspan="8" style="background-color:lightgray;padding:7px;text-align:left;color:black;font-weight:bold">
+                            Duty Time
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid gray">
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Max Duty</td>
+                        <td style="padding:7px;text-align:left;"><div dx-text-box="txt_maxDuty" class="center"></div></td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Total Duty </td>
+                        <td style="padding:7px;text-align:left;"><div dx-text-box="txt_totalDuty" class="center"></div></td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Required Rest </td>
+                        <td style="padding:7px;text-align:left;"><div dx-text-box="txt_reqRest" class="center"></div></td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Actual Rest</td>
+                        <td style="padding:7px;text-align:left;"><div dx-text-box="txt_actRest" class="center"></div></td>
+                    </tr>
+                </table>
+
+
+                <table style="margin-top:10px;border:0px solid #eee;width:100%;color:lightgray" class="dx-border">
+                    <tr>
+                        <td colspan="8" style="background-color:lightgray;padding:7px;text-align:left;color:black;font-weight:bold">
+                            Fatigue Sign
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid gray">
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Fidgeting </td>
+                        <td style="padding:7px;text-align:left;"><div dx-check-box="txt_fidgeting" class="center"></div></td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Impaired Attention </td>
+                        <td style="padding:7px;text-align:left;"><div dx-check-box="txt_attention" class="center"></div></td>
+                    </tr>
+
+                    <tr style="border-bottom:1px solid gray">
+                        <td style="padding: 7px;text-align:left; font-weight: bold">  Rubbing Eyes</td>
+                        <td style="padding:7px;text-align:left;"><div dx-check-box="txt_rubbingEyes" class="center"></div></td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Impaired Memory </td>
+                        <td style="padding:7px;text-align:left;"><div dx-check-box="txt_memory" class="center"></div></td>
+                    </tr>
+
+                    <tr style="border-bottom:1px solid gray">
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Yawing </td>
+                        <td style="padding:7px;text-align:left;"><div dx-check-box="txt_yawing" class="center"></div></td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Impaired Problem Solving </td>
+                        <td style="padding:7px;text-align:left;"><div dx-check-box="txt_problemSolving" class="center"></div></td>
+                    </tr>
+
+                    <tr style="border-bottom:1px solid gray">
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Frequent Blinking </td>
+                        <td style="padding:7px;text-align:left;"><div dx-check-box="txt_blinking" class="center"></div></td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Increased Risk Taking </td>
+                        <td style="padding:7px;text-align:left;"><div dx-check-box="txt_riskTaking" class="center"></div></td>
+                    </tr>
+
+                    <tr style="border-bottom:1px solid gray">
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Staring Blankly </td>
+                        <td style="padding:7px;text-align:left;"><div dx-check-box="txt_staringBlankly" class="center"></div></td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Impaired Situational Awareness </td>
+                        <td style="padding:7px;text-align:left;"><div dx-check-box="txt_awareness" class="center"></div></td>
+                    </tr>
+
+                    <tr style="border-bottom:1px solid gray">
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Long Blinks </td>
+                        <td style="padding:7px;text-align:left;"><div dx-check-box="txt_longBlinks" class="center"></div></td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Negative Mood </td>
+                        <td style="padding:7px;text-align:left;"><div dx-check-box="txt_negativeMood" class="center"></div></td>
+                    </tr>
+
+                    <tr style="border-bottom:1px solid gray">
+                        <td style="padding: 7px;text-align:left; font-weight: bold" colspan="2">
+                            <div>
+                                <p style="display:inline-block">Difficulty Keeping Eyes</p>
+                                <div style="display:inline-block;float:right" dx-check-box="txt_keepingEyes" class="center"></div>
+                            </div>
+                            <div>
+                                <p style="display:inline-block">Head Nodding</p>
+                                <div style="display:inline-block;float:right" dx-check-box="txt_headNodding" class="center"></div>
+                            </div>
+                        </td>
+
+
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Reduced Communication</td>
+                        <td style="padding:7px;text-align:left;"><div dx-check-box="txt_reducedCommunication" class="center"></div></td>
+                    </tr>
+
+                    <tr style="border-bottom:1px solid gray">
+                        <td style="padding: 7px;text-align:left; font-weight: bold" colspan="2"> Other (Specify) </td>
+                        <td style="padding:7px;text-align:left" colspan="6"><div dx-text-box="txt_other" class="center"></div></td>
+                    </tr>
+                </table>
+
+                <table style="margin-top:10px;border:0px solid #eee;width:100%;color:lightgray" class="dx-border">
+                    <tr>
+                        <td colspan="7" style="background-color:lightgray;padding:7px;text-align:left;color:black;font-weight:bold">
+                            Fleeing (One Choice Only)
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid gray">
+                        <td style="padding:7px;text-align:left;"> 1 <div dx-check-box="txt_fullyAlert" class="center"></div></td>
+
+                        <td style="padding:7px;text-align:left;"> 2 <div dx-check-box="txt_Lively" class="center"></div></td>
+
+                        <td style="padding:7px;text-align:left;"> 3 <div dx-check-box="txt_Fresh" class="center"></div></td>
+
+                        <td style="padding:7px;text-align:left;"> 4 <div dx-check-box="txt_littleTired" class="center"></div></td>
+
+                        <td style="padding:7px;text-align:left;"> 5 <div dx-check-box="txt_almostTired" class="center"></div></td>
+
+                        <td style="padding:7px;text-align:left;"> 6 <div dx-check-box="txt_veryTired" class="center"></div></td>
+
+                        <td style="padding:7px;text-align:left;"> 7 <div dx-check-box="txt_exhausted" class="center"></div></td>
+                    </tr>
+
+                    <tr style="border-bottom:1px solid gray">
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Fully Alert </td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Lively </td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Fresh </td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold">Little Tired </td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Almost Tired  </td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold"> Very Tired </td>
+                        <td style="padding: 7px;text-align:left; font-weight: bold">Exhausted </td>
+                    </tr>
+
+                </table>
+
+                <table style="margin-top:10px;border:0px solid #eee;width:100%;color:lightgray" class="dx-border">
+                    <tr>
+                        <td colspan="8" style="background-color:lightgray;padding:7px;text-align:left;color:black;font-weight:bold">
+                            Report
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid gray">
+                        <td style="padding:7px;text-align:left"><div style="height: 400px" dx-text-area="txt_report" class="center"></div></td>
+                    </tr>
+                </table>
+
+                <table style="margin-top:10px;border:0px solid #eee;width:100%;color:lightgray" class="dx-border">
+                    <tr>
+                        <td colspan="8" style="background-color:lightgray;padding:7px;text-align:left;color:black;font-weight:bold">
+                            Reporter Signature
+                        </td> 
+                        <td colspan="8" style="background-color:lightgray;padding:7px;text-align:left;color:black;font-weight:bold">
+                            Date
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:1px solid gray">
+                        <td style="padding:7px;text-align:left"><div class="center"></div></td>
+                        <td style="padding:7px;text-align:left"><div class="center"></div></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <div dx-load-panel="loadPanel"></div>
+</div>

@@ -1,0 +1,129 @@
+﻿<style>
+    .btable {
+    }
+
+        .btable tr {
+            height: 35px;
+        }
+
+        .btable td {
+            border: 1px solid gray;
+            text-align: center
+        }
+</style>
+<div ng-controller="jlTabanController">
+    <div id="popup_add" dx-popup="popup_add" class="no-padding">
+        <div id="scroll_jl" dx-scroll-view="scroll_jl" style="margin-top:5px">
+            <div class="jl-container" style="width:100%;color:lightgray !important" ng-show="isContentVisible">
+                <div id="jl" style="font-size:13px; ">
+                    
+
+
+                        <div style="padding:10px;">
+                            <table style="width:100%;border:1px solid gray">
+                                <tr>
+                                    <td style="width:200px">
+                                        <img ng-src="{{airline_logo}}" style="margin-left:5px;position:relative; width:200px" id="_logo" />
+                                    </td>
+                                    <td style="text-align:left; font-weight:bold;font-size:16px;">
+                                        TABAN AIRLINES FLIGHT OPERATIONS
+                                        JOURNEY LOG
+                                    </td>
+                                </tr>
+                            </table>
+                            <div  >
+                                <table class="btable" style="width:100%;margin-top:10px">
+
+                                    <tr >
+                                        <td style="font-weight:bold;width:12.5%">FLT CODE</td>
+                                        <td style="font-weight:bold;width:12.5%"> 05</td>
+                                        <td style="font-weight:bold;width:12.5%">ACFT TYPE</td>
+                                        <td style="font-weight:bold;width:12.5%">{{jl.AcType}}</td>
+                                        <td style="font-weight:bold;width:12.5%">DATE</td>
+                                        <td style="font-weight:bold;width:12.5%">{{formatDate(jl.Date)}} </td>
+                                        <td style="font-weight:bold;width:12.5%">ACFT REG</td>
+                                        <td style="font-weight:bold; width:12.5%">{{jl.Reg}}</td>
+                                    </tr>
+                                    
+                                </table>
+                                <table class="btable" style="width:100%;margin-top:10px">
+
+                                    <tr style="background:#bfbfbf">
+                                        <td style="font-weight:bold;color:black">FLT NO</td>
+                                        <td style="font-weight:bold;color:black">FROM</td>
+                                        <td style="font-weight:bold;color:black">TO</td>
+                                        <td style="font-weight:bold;width:150px;color:black">OFF BLOCK</td>
+                                        <td style="font-weight:bold;width:150px;color:black">ON BLOCK</td>
+                                        <td style="font-weight:bold;width:150px;color:black">BLOCK TIME</td>
+                                    </tr>
+                                    <tr ng-repeat="x in jl.sectors">
+                                        <td style="font-weight:bold">{{x.no}}</td>
+                                        <td style="font-weight:bold">{{x.from}}</td>
+                                        <td style="font-weight:bold">{{x.to}}</td>
+                                        <td style="font-weight:bold">{{formatTime(x.leg.BlockOff2)}}</td>
+                                        <td style="font-weight:bold">{{formatTime(x.leg.BlockOn2)}}</td>
+                                        <td style="font-weight:bold">{{formatMinutes(x.leg.BlockTime)}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight:bold" colspan="3">
+                                            <span style="display:inline-block;margin-left:5px; ">ASR</span><input type="checkbox" id="asr" style="display:inline-block;border:1px solid #aaa;margin-left:5px;position:relative;top:3px;" />
+                                            <span style="display:inline-block;margin-left:10px; ">CVR</span><input type="checkbox" id="vr" style="display:inline-block;border:1px solid #aaa;margin-left:5px;position:relative;top:3px;" />
+                                        </td>
+
+                                        <td style="font-weight:bold;text-align:right;padding-right:5px" colspan="2">TOTAL BLOCK TIME</td>
+                                        <td style="font-weight:bold">{{formatMinutes(totalBlockTime)}}</td>
+
+                                    </tr>
+                                    <tr style="background:#bfbfbf">
+                                        <td style="font-weight:bold;color:black">CC</td>
+                                        <td style="font-weight:bold;color:black">TC</td>
+                                        <td style="font-weight:bold;color:black" colspan="2">COCKPIT CREW</td>
+                                        <td style="font-weight:bold;color:black">TOTAL DUTY</td>
+                                        <td style="font-weight:bold;color:black">TOTAL LANDINGS</td>
+                                    </tr>
+                                    <tr ng-repeat="x in  jl.crewscockpit">
+                                        <td style="font-weight:bold">{{x.Position}}</td>
+                                        <td style="font-weight:bold"> </td>
+                                        <td style="font-weight:bold" colspan="2">{{x.Name}}</td>
+                                        <td style="font-weight:bold">{{formatTime(x.TotalDuty)}}</td>
+                                        <td style="font-weight:bold">{{x.TotalLandings}}</td>
+                                    </tr>
+                                    <tr style="background:#bfbfbf">
+                                        <td style="font-weight:bold;color:black">CC</td>
+                                        <td style="font-weight:bold;color:black">TC</td>
+                                        <td style="font-weight:bold;color:black" colspan="2">CABIN CREW</td>
+                                        <td style="font-weight:bold"> </td>
+                                        <td style="font-weight:bold"> </td>
+                                    </tr>
+                                    <tr ng-repeat="x in  jl.crewscabin">
+                                        <td style="font-weight:bold">{{x.Position}}</td>
+                                        <td style="font-weight:bold"> </td>
+                                        <td style="font-weight:bold" colspan="2">{{x.Name}}</td>
+                                        <td style="font-weight:bold">{{formatTime(x.TotalDuty)}}</td>
+                                        <td style="font-weight:bold">{{x.TotalLandings}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td style="font-weight:bold;padding-right:5px;text-align:right" colspan="2"> Commander's Signature</td>
+                                        <td colspan="2" style="padding:5px;">
+
+                                            <img id="_jlsign" style="width:100%;height:109px;top:0;left:0;" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+
+
+                        </div>
+
+
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
