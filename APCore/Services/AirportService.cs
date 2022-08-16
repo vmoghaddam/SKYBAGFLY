@@ -38,69 +38,89 @@ namespace APCore.Services
 
         public async Task<DataResponse> GetAirportNotamAll()
         {
-            var stations = await _context.Airports.Where(q => q.ICAO.StartsWith("OI") || q.ICAO.StartsWith("ORNI")).Select(q => q.ICAO).ToListAsync();
-            stations.Add("OIIX");
-            DateTime baseDate = DateTime.Now.Date;
-            var data = new List<NOTAM>();
-            var exists = await _context.NOTAMs.Where(q => stations.Contains(q.StationId) && q.DateDay == baseDate).ToListAsync();
-            _context.NOTAMs.RemoveRange(exists);
-            foreach (var apt in stations)
+            try
             {
-                try
+
+
+                var stations = await _context.Airports.Where(q => q.ICAO.StartsWith("OI") || q.ICAO.StartsWith("ORNI")).Select(q => q.ICAO).ToListAsync();
+                stations.Add("OIIX");
+                DateTime baseDate = DateTime.Now.Date;
+                var data = new List<NOTAM>();
+                var exists = await _context.NOTAMs.Where(q => stations.Contains(q.StationId) && q.DateDay == baseDate).ToListAsync();
+                _context.NOTAMs.RemoveRange(exists);
+                foreach (var apt in stations)
                 {
-                    var result = new List<string>();
-                    var html = "https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?method=displayByICAOs&reportType=REPORT&actionType=notamRetrievalByICAOs&retrieveLocId=" + apt.ToUpper() + "&formatType=ICAO";
-
-
-
-                    using (WebClient webClient = new WebClient())
+                    try
                     {
-                        webClient.Headers.Add(HttpRequestHeader.Cookie, "akamai_pilotweb_access=true");
-                        var txt = webClient.DownloadString(html);
-                        var doc = new HtmlDocument();
-                        doc.LoadHtml(txt);
+                        var result = new List<string>();
+                        var html = "https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?method=displayByICAOs&reportType=REPORT&actionType=notamRetrievalByICAOs&retrieveLocId=" + apt.ToUpper() + "&formatType=ICAO";
 
 
-                        var raw = doc.DocumentNode.Descendants("div")
-                            .Where(q => q.Id == "notamRight")
-                            .Select(q => q.Descendants("span").First().InnerText)
 
-                            .ToList();
-
-                        foreach (var x in raw)
-                            result.Add(Regex.Replace(x, @"\r\n?|\n", "<br/>"));
-
-                        //data.Add(new NotamResult() { ICAO = apt, NOTAMS = result });
-                        var notam = new NOTAM()
+                        using (WebClient webClient = new WebClient())
                         {
-                            DateDay = baseDate,
-                            DateCreate = DateTime.Now,
-                            FDPId = null,
-                            FlightId = null,
-                            StationId = apt,
+                            webClient.Headers.Add(HttpRequestHeader.Cookie, "akamai_pilotweb_access=true");
+                            var txt = webClient.DownloadString(html);
+                            var doc = new HtmlDocument();
+                            doc.LoadHtml(txt);
 
-                        };
-                        notam.NOTAMItems = result.Select(q => new NOTAMItem()
-                        {
-                            Text = q,
-                        }).ToList();
-                        _context.NOTAMs.Add(notam);
-                        data.Add(notam);
+
+                            var raw = doc.DocumentNode.Descendants("div")
+                                .Where(q => q.Id == "notamRight")
+                                .Select(q => q.Descendants("span").First().InnerText)
+
+                                .ToList();
+
+                            foreach (var x in raw)
+                                result.Add(Regex.Replace(x, @"\r\n?|\n", "<br/>"));
+
+                            //data.Add(new NotamResult() { ICAO = apt, NOTAMS = result });
+                            var notam = new NOTAM()
+                            {
+                                DateDay = baseDate,
+                                DateCreate = DateTime.Now,
+                                FDPId = null,
+                                FlightId = null,
+                                StationId = apt,
+
+                            };
+                            notam.NOTAMItems = result.Select(q => new NOTAMItem()
+                            {
+                                Text = q,
+                            }).ToList();
+                            _context.NOTAMs.Add(notam);
+                            data.Add(notam);
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
 
                     }
                 }
-                catch(Exception ex)
+                var saveresult = await _context.SaveAsync();
+                return new DataResponse
                 {
-
-                }
+                    Data = data,
+                    Errors = null,
+                    IsSuccess = true
+                };
             }
-            var saveresult = await _context.SaveAsync();
-            return new DataResponse
+            catch(Exception ex)
             {
-                Data = data,
-                Errors = null,
-                IsSuccess = true
-            };
+                var errs = new List<string>();
+                errs.Add(ex.Message);
+                if (ex.InnerException != null)
+                {
+                    errs.Add(ex.InnerException.Message);
+                }
+                return new DataResponse
+                {
+                    Data = "nill",
+                    Errors = errs,
+                    IsSuccess = false
+                };
+            }
         }
         public async Task<DataResponse> GetAirportNotamArchive(List<string> icao)
         {

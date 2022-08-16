@@ -122,17 +122,34 @@ namespace APCore.Services
         }
         public async Task<DataResponse> GetCrewProfile(int crewId)
         {
-
-            var profile = await _context.AppCrews.Where(q =>
-                    q.Id == crewId
-
-            ).FirstOrDefaultAsync();
-            return new DataResponse
+            try
             {
-                Data = profile,
-                Errors = null,
-                IsSuccess = true
-            };
+                var profile = await _context.AppCrews.Where(q =>
+                                    q.Id == crewId
+
+                            ).FirstOrDefaultAsync();
+                return new DataResponse
+                {
+                    Data = profile,
+                    Errors = null,
+                    IsSuccess = true
+                };
+            }
+            catch(Exception ex)
+            {
+                var errs = new List<string>();
+                errs.Add(ex.Message);
+                if (ex.InnerException != null)
+                    errs.Add(ex.InnerException.Message);
+                return new DataResponse
+                {
+                    Data = "NLL",
+                    Errors = errs,
+                    IsSuccess = false
+                };
+
+            }
+            
         }
 
     }

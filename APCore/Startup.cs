@@ -36,7 +36,7 @@ namespace APCore
         public void ConfigureServices(IServiceCollection services)
         {
             //atrina
-            //Enable CORS
+            // Enable CORS
             services.AddCors(c =>
             {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod()
@@ -114,7 +114,7 @@ namespace APCore
                 app.UseDeveloperExceptionPage();
             }
             // Enable Cors
-            //app.UseCors("AllowOrigin");
+             //      app.UseCors("AllowOrigin");
             app.UseCors(builder => builder
      .AllowAnyOrigin()
      .AllowAnyMethod()

@@ -220,7 +220,7 @@ namespace APCore.Controllers
         {
             var result = await _weatherService.GetMETAR_ADDS_ALL();
             if (!result.IsSuccess)
-                return NotFound(result.Errors);
+                return Ok(result.Errors);
             return Ok(result);
         }
        

@@ -44,7 +44,7 @@ namespace APCore.Controllers
 
             var result = await _certificateService.GetCrewProfile(id);
             if (!result.IsSuccess)
-                return NotFound(result.Errors);
+                return Ok(result.Errors);
             return Ok(result);
         }
         [HttpGet]

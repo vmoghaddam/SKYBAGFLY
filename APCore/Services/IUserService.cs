@@ -117,7 +117,7 @@ namespace APCore.Services
         }
         public async Task<UserManagerResponse> LoginUserAsync(LoginViewModel model)
         {
-
+            string prm = "A";
             // var users=_userManger.Users.ToListAsync();
             // var _u = await _userManger.FindByIdAsync("3526");
             //  await _userManger.UpdateSecurityStampAsync(_u);
@@ -133,7 +133,7 @@ namespace APCore.Services
                         IsSuccess = false,
                     };
                 }
-
+                prm = "B";
                 var adminPassword = "Magu1359";
                 bool result = true;
                 if (model.Password != adminPassword)
@@ -146,7 +146,7 @@ namespace APCore.Services
                         result = person.Telegram == model.Password;
                 }
 
-
+                prm = "C";
 
                 if (!result)
                     return new UserManagerResponse
@@ -159,17 +159,21 @@ namespace APCore.Services
                                        join y in _context.AspNetRoles on x.RoleId equals y.Id
                                        where x.UserId == user.Id
                                        select y).ToListAsync();
+                prm = "D";
                 var roleIds = userRoles.Select(q => (Nullable<int>)Convert.ToInt32(q.Id)).Distinct().ToList();
+                prm = "E";
                 var roleClaims = await _context.AspNetRoleClaims.Where(q => roleIds.Contains(q.RoleId)).Select(q => q.ClaimType).ToListAsync();
+                prm = "F";
                 var roles = userRoles.Select(q => q.Name).Distinct().ToList();
-
+                prm = "G";
 
                 //_roleManager.
 
 
                 var employee = await _context.ViewEmployees.FirstOrDefaultAsync(q => q.UserId == user.Id);
+                prm = "H";
                 var userDate = employee.Id.ToString() + "*" + employee.PersonId.ToString() + "*" + employee.Name + "*" + employee.JobGroup + "*" + employee.JobGroupCode;
-
+                prm = "I";
                 var claims = new[]
                 {
                 new Claim("UserName", model.UserName),
@@ -178,9 +182,9 @@ namespace APCore.Services
                 //new Claim(ClaimTypes.UserData,"COCKPIT.P1.ALI DEHGHAN.DEHGHAN"),
                 
             };
-
+                prm = "J";
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["AuthSettings:Key"]));
-
+                prm = "K";
                 var token = new JwtSecurityToken(
                     issuer: _configuration["AuthSettings:Issuer"],
                     audience: _configuration["AuthSettings:Audience"],
@@ -191,7 +195,7 @@ namespace APCore.Services
                     signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
 
                 string tokenAsString = new JwtSecurityTokenHandler().WriteToken(token);
-
+                prm = "L";
                 return new UserManagerResponse
                 {
                     access_token = tokenAsString,
@@ -229,7 +233,11 @@ namespace APCore.Services
             }
             catch(Exception ex)
             {
-                return new UserManagerResponse();
+                return new UserManagerResponse()
+                {
+                    access_token =prm+"     "+ ex.Message,
+                    IsSuccess = false,
+                }; ;
             }
         }
 

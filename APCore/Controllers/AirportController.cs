@@ -99,7 +99,7 @@ namespace APCore.Controllers
         {
             var result = await _airportService.GetAirportNotamAll();
             if (!result.IsSuccess)
-                return NotFound(result.Errors);
+                return Ok(result.Errors);
             return Ok(result);
 
 
