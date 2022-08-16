@@ -1154,35 +1154,35 @@ app.controller('epLogBookController', ['$scope', '$location', '$routeParams', '$
         console.log('wx dates', arr);
         $.each(arr, function (_i, _dt) {
             console.log('get sigwx_adds ', _dt);
-            $http.get(staticFiles + 'Weather/SIGWX/ADDS/SIGWX_ADDS_' + _dt + '_2105.png').then(
-                function (response) {
-                    //_g.SIGWX2105 = true;
-                    $http.get(staticFiles + 'Weather/SIGWX/ADDS/SIGWX_ADDS_' + _dt + '_3105.png').then(
-                        function (response) {
-                            //_g.SIGWX3105 = true;
+            ////$http.get(staticFiles + 'Weather/SIGWX/ADDS/SIGWX_ADDS_' + _dt + '_2105.png').then(
+            ////    function (response) {
+            ////        //_g.SIGWX2105 = true;
+            ////        $http.get(staticFiles + 'Weather/SIGWX/ADDS/SIGWX_ADDS_' + _dt + '_3105.png').then(
+            ////            function (response) {
+            ////                //_g.SIGWX3105 = true;
 
-                            $http.get(staticFiles + 'Weather/AVMET/' + _dt + '-sig00.png').then(
-                                function (xres) { console.log('get avmet 00'); }
-                            );
-                            $http.get(staticFiles + 'Weather/AVMET/' + _dt + '-sig06.png').then(
-                                function (xres) { console.log('get avmet 06'); }
-                            );
-                            $http.get(staticFiles + 'Weather/AVMET/' + _dt + '-sig12.png').then(
-                                function (xres) { console.log('get avmet 12'); }
-                            );
-                            $http.get(staticFiles + 'Weather/AVMET/' + _dt + '-sig18.png').then(
-                                function (xres) { console.log('get avmet 18'); }
-                            );
-                        }
+            ////                $http.get(staticFiles + 'Weather/AVMET/' + _dt + '-sig00.png').then(
+            ////                    function (xres) { console.log('get avmet 00'); }
+            ////                );
+            ////                $http.get(staticFiles + 'Weather/AVMET/' + _dt + '-sig06.png').then(
+            ////                    function (xres) { console.log('get avmet 06'); }
+            ////                );
+            ////                $http.get(staticFiles + 'Weather/AVMET/' + _dt + '-sig12.png').then(
+            ////                    function (xres) { console.log('get avmet 12'); }
+            ////                );
+            ////                $http.get(staticFiles + 'Weather/AVMET/' + _dt + '-sig18.png').then(
+            ////                    function (xres) { console.log('get avmet 18'); }
+            ////                );
+            ////            }
 
                          
 
 
-                    );
+            ////        );
 
-                }
+            ////    }
 
-            );
+            ////);
         });
 
     }
@@ -1411,9 +1411,9 @@ app.controller('epLogBookController', ['$scope', '$location', '$routeParams', '$
                         }, function (err) { });
 
                         //12-05
-                        _getWeatherCharts(grps);
-                        _getWindCharts(grps);
-                        _getIRIMOSigwx(grps);
+                       // _getWeatherCharts(grps);
+                      //  _getWindCharts(grps);
+                      //  _getIRIMOSigwx(grps);
                         ///////////////////////////
 
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace APCore.Models
 {
-    public partial class FormVacation
+    public partial class ViewFormVacation
     {
         public int Id { get; set; }
         public int Reason { get; set; }
@@ -20,5 +20,12 @@ namespace APCore.Models
         public DateTime? DateStatus { get; set; }
         public string Status { get; set; }
         public int? OperatorId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Name { get; set; }
+        public string PID { get; set; }
+        public string NID { get; set; }
+        public string Mobile { get; set; }
+        public string JobGroup { get; set; }
     }
 }

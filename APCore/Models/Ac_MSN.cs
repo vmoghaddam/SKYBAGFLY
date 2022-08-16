@@ -57,6 +57,16 @@ namespace APCore.Models
         public int? TotalSeat { get; set; }
         public string Color1 { get; set; }
         public string Color2 { get; set; }
+        public int? MAXZFW { get; set; }
+        public int? MAXLNW { get; set; }
+        public int? OASecLimit { get; set; }
+        public int? OBSecLimit { get; set; }
+        public int? OCSecLimit { get; set; }
+        public int? ODSecLimit { get; set; }
+        public int? CPT1Limit { get; set; }
+        public int? CPT2Limit { get; set; }
+        public int? CPT3Limit { get; set; }
+        public int? CPT4Limit { get; set; }
 
         public virtual AircraftModel AC_Model { get; set; }
         public virtual Organization AirlineOperators { get; set; }

@@ -33,6 +33,14 @@ namespace APCore.Models
         public string PIC { get; set; }
         public decimal? FPFuel { get; set; }
         public decimal? FPTripFuel { get; set; }
+        public decimal? MCI { get; set; }
+        public decimal? FLL { get; set; }
+        public decimal? DOW { get; set; }
+        public string Source { get; set; }
+        public string JPlan { get; set; }
+        public string JAPlan1 { get; set; }
+        public string JAPlan2 { get; set; }
+        public string JFuel { get; set; }
 
         public virtual FlightInformation Flight { get; set; }
         public virtual ICollection<OFPImportItem> OFPImportItems { get; set; }

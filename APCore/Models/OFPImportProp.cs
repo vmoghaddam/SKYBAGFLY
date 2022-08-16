@@ -15,6 +15,7 @@ namespace APCore.Models
         public string User { get; set; }
         public string DateUpdate { get; set; }
         public decimal? DateUpdateLocal { get; set; }
+        public string Remark { get; set; }
 
         public virtual OFPImport OFP { get; set; }
     }

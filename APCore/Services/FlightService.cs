@@ -185,6 +185,13 @@ namespace APCore.Services
                         ofp.Id,
                         ofp.FlightId,
                         ofp.TextOutput,
+                        ofp.DOW,
+                        ofp.FLL,
+                        ofp.MCI,
+                        ofp.JAPlan1,
+                        ofp.JAPlan2,
+                        ofp.JPlan,
+                        ofp.JFuel,
                         ofp.User,
                         ofp.DateCreate,
                         ofp.PIC,
@@ -196,7 +203,6 @@ namespace APCore.Services
                     Errors = null,
                     IsSuccess = true
                 };
-
         }
         //GetDRsByFlightIds
         public async Task<DataResponse> GetDRsByFlightIds(List<int?> ids)
@@ -222,7 +228,30 @@ namespace APCore.Services
             {
                 Data = new
                 {
-                    ofps = _ofps.Select(q => new { q.Id, q.DateCreate, q.DateFlight, q.Destination, q.FileName, q.FlightId, q.FlightNo, q.Origin, q.TextOutput, q.User, q.JLSignedBy, q.JLDatePICApproved, q.PIC, q.PICId }).ToList(),
+                    ofps = _ofps.Select(q => new
+                    {
+                        q.Id,
+                        q.DateCreate,
+                        q.DateFlight,
+                        q.Destination,
+                        q.FileName,
+                        q.FlightId,
+                        q.FlightNo,
+                        q.Origin,
+                        q.TextOutput,
+                        q.User,
+                        q.JLSignedBy,
+                        q.JLDatePICApproved,
+                        q.PIC,
+                        q.PICId,
+                        q.DOW,
+                        q.FLL,
+                        q.MCI,
+                        q.JAPlan1,
+                        q.JAPlan2,
+                        q.JPlan,
+                        q.JFuel,
+                    }).ToList(),
                     ofpProps = props
 
 
@@ -232,7 +261,6 @@ namespace APCore.Services
                 Errors = null,
                 IsSuccess = true
             };
-
         }
 
         public async Task<DataResponse> GetOFPProps(int ofpId)

@@ -230,5 +230,21 @@ namespace APCore.Models
         public int? RemainTypeMD { get; set; }
         public int? RemainType737 { get; set; }
         public int? RemainTypeAirbus { get; set; }
+        public DateTime CTUIssueDate { get; set; }
+        public DateTime LRCExpireDate { get; set; }
+        public DateTime LRCIssueDate { get; set; }
+        public DateTime RSPExpireDate { get; set; }
+        public DateTime RSPIssueDate { get; set; }
+        public DateTime SAExpireDate { get; set; }
+        public DateTime SAIssueDate { get; set; }
+        public DateTime Type737ConversionIssueDate { get; set; }
+        public DateTime Type737ExpireDate { get; set; }
+        public DateTime Type737IssueDate { get; set; }
+        public DateTime TypeAirbusConversionIssueDate { get; set; }
+        public DateTime TypeAirbusExpireDate { get; set; }
+        public DateTime TypeAirbusIssueDate { get; set; }
+        public DateTime TypeMDConversionIssueDate { get; set; }
+        public DateTime TypeMDExpireDate { get; set; }
+        public DateTime TypeMDIssueDate { get; set; }
     }
 }

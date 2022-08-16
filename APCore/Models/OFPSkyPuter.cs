@@ -13,5 +13,9 @@ namespace APCore.Models
         public DateTime? FlightDate { get; set; }
         public string OFP { get; set; }
         public string AIRLINE { get; set; }
+        public DateTime? DateCreate { get; set; }
+        public DateTime? DateUpload { get; set; }
+        public int? UploadStatus { get; set; }
+        public string UploadMessage { get; set; }
     }
 }

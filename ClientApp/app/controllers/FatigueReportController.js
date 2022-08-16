@@ -7,7 +7,7 @@ app.controller('FatigueReportController', ['$scope', '$rootScope', '$window', fu
         Id: -1,
     };
 
-    $scope.popup_add_visible = true;
+    $scope.popup_add_visible = false;
     $scope.popup_height = $(window).height() - 300;
     $scope.popup_width = $(window).width() - 0;
     $scope.popup_add_title = 'Fatigue Report';
